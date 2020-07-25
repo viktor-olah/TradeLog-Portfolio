@@ -1,0 +1,116 @@
+﻿<Window x:Class="TradeLog.View.NewUserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TradeLog.View"
+        mc:Ignorable="d"
+        Title="NewUserView" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="White"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="White"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FFFD5807"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid Margin="0,1,0,-1">
+
+        <Rectangle Margin="10" Stroke="White" RadiusX="10" RadiusY="10" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="540" Width="450">
+        </Rectangle>
+        <!--
+        <Rectangle Margin="10" Stroke="#FFFD5807" RadiusX="10" RadiusY="10" StrokeThickness="0.8" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="550" Width="450">
+        </Rectangle>
+        -->
+        <Rectangle Margin="25" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="480" Width="400">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="1000"/>
+            </Rectangle.BitmapEffect>
+
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Center" Height="44" Margin="324,117,301,439" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" FontFamily="Segoe UI Light" FontSize="28" Text="Új felhasználó"/>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="230,184,511,397" TextWrapping="Wrap" VerticalAlignment="Center" Width="59" FontFamily="Segoe UI Light" FontSize="12" Text="Teljes név *"/>
+        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="220,62,407,500" TextWrapping="Wrap" Text="P  rtfolio" VerticalAlignment="Center" Width="173" Foreground="Black" FontFamily="Yu Gothic UI" FontSize="26"/>
+        <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="227,62,400,500" TextWrapping="Wrap" Text=" o " VerticalAlignment="Center" Width="173" Foreground="#FFFD5807" FontFamily="Yu Gothic UI" FontSize="26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="517,548,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" FontFamily="Calibri Light"><Run Text="@TradeLog "/><Run Text=" "/><Run Text="0.1"/></TextBlock>
+        <Rectangle Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
+            </Rectangle.BitmapEffect>
+        </Rectangle>
+        <Rectangle Margin="290,271,280,304" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
+            </Rectangle.BitmapEffect>
+        </Rectangle>
+        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Create" Content="Create" HorizontalAlignment="Center" Height="34" Margin="300,396,398,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Create_Click" />
+        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Back" Content="Back" HorizontalAlignment="Center" Height="34" Margin="415,396,283,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Back_Click" />
+        <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="211,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="230,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <Rectangle Margin="290,325,280,250" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
+            </Rectangle.BitmapEffect>
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="231,245,511,336" TextWrapping="Wrap" VerticalAlignment="Center" Width="58" FontFamily="Segoe UI Light" FontSize="12" Text="Login név *"/>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="248,307,511,274" TextWrapping="Wrap" VerticalAlignment="Center" Width="41" FontFamily="Segoe UI Light" FontSize="12" Text="Jelszó *"/>
+        <TextBox x:Name="fullname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
+        <TextBox x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,275,0,305" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="292,329,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" />
+    </Grid>
+
+
+</Window>
+

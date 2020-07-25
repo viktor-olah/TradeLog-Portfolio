@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User>
+  <User versenyzoNeve="Oláh Viktor" loginName="1" loginPass="1">
+    <Naplo aktualistoke="1000" />
+    <Kotesek_lista>
+      <Kotesek>
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:03.490684+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:04.2174514+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:04.9976731+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="-100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:08.0339345+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="-100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:08.4738397+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="-100" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:08.8240419+02:00" />
+        <Kotes ticket="1" devizapar="1" mennyiseg="1" pricenyit="1" stop="1" cel="1" zar="1" vegosszeg="21032" keputvonal="new" megjegyzes="1" valasztottidosik="5M" jegyzettido="2020-07-22T12:59:12.2889206+02:00" />
+      </Kotesek>
+    </Kotesek_lista>
+  </User>
+</User>
