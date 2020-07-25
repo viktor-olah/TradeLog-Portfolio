@@ -15,7 +15,8 @@ namespace TradeLog.Model
         string _loginName;
         string _loginPass;
 
-        Naplo _szemelyesnaplo;
+        double _aktualisToke;
+
         List<Pozicio> kotesek;
 
         public string VersenyzoNeve
@@ -63,17 +64,19 @@ namespace TradeLog.Model
                 }
             }
         }
-        internal Naplo Szemelyesnaplo { get => _szemelyesnaplo; set => _szemelyesnaplo = value; }
+   
         public int Id { get => _id; set => _id = value; }
         internal List<Pozicio> Kotesek { get => kotesek; set => kotesek = value; }
+        public double AktualisToke { get => _aktualisToke; set => _aktualisToke = value; }
 
-        public User(string versenyzoNeve, string loginName, string loginPass, Naplo szemelyesnaplo, int id)
+        public User(string versenyzoNeve, string loginName, string loginPass, int id, double aktualisToke)
         {
             VersenyzoNeve = versenyzoNeve;
             LoginName = loginName;
             LoginPass = loginPass;
-            Szemelyesnaplo = szemelyesnaplo;
             Id = id;
+            AktualisToke = aktualisToke;
+            kotesek = new List<Pozicio>();
         }
 
         public User(string versenyzoNeve, string loginName, string loginPass)
@@ -85,45 +88,13 @@ namespace TradeLog.Model
             
         }
 
-        public User(Naplo szemelyesnaplo)
-        {
-            Szemelyesnaplo = szemelyesnaplo;
-        }
-
 
         public override string ToString()
         {
             return $"{VersenyzoNeve} - {LoginPass}";
         }
 
-        public User(XElement usernode)
-        {
-            if (usernode.Name == "User")
-            {
-                _versenyzoNeve = usernode.Attribute("versenyzoNeve").Value;
-                _loginName = usernode.Attribute("loginName").Value;
-                _loginPass = usernode.Attribute("loginPass").Value;
-                _szemelyesnaplo = new Naplo(usernode.Element("Naplo"));
-                kotesek = (from kotesek in usernode.Element("Kotesek_lista").Elements("Kotesek").Elements("Kotes") select new Pozicio(kotesek)).ToList();
-            }
-            else
-            {
-                throw new ArgumentException("A node csak User tipusu lehet!");
-            }
-        }
-        public XElement UserToXML()
-        {
-            XElement user = new XElement("User",
-                new XAttribute("versenyzoNeve", _versenyzoNeve),
-                new XAttribute("loginName", _loginName),
-                new XAttribute("loginPass", _loginPass),
-                _szemelyesnaplo.NaploToXML(),
-                new XElement("Kotesek_lista", new XElement("Kotesek")));
-            foreach (Pozicio item in kotesek)
-            {
-                user.Element("Kotesek_lista").Element("Kotesek").Add(item.PozicioToXML());
-            }
-            return user;
-        }
+      
+      
     }
 }

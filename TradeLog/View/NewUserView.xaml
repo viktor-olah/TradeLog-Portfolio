@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:TradeLog.View"
         mc:Ignorable="d"
         Title="NewUserView" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+    
+    <!--#region Resources-->
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -64,27 +66,40 @@
             </Setter>
         </Style>
     </Window.Resources>
+<!--#endregion-->
 
-
-    <Grid Margin="0,1,0,-1">
-
+    <Grid>
+        <!--#region Fo panel-->
         <Rectangle Margin="10" Stroke="White" RadiusX="10" RadiusY="10" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="540" Width="450">
         </Rectangle>
-        <!--
-        <Rectangle Margin="10" Stroke="#FFFD5807" RadiusX="10" RadiusY="10" StrokeThickness="0.8" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="550" Width="450">
-        </Rectangle>
-        -->
         <Rectangle Margin="25" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="480" Width="400">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="1000"/>
             </Rectangle.BitmapEffect>
-
         </Rectangle>
+        <!--#endregion-->
+        
+        
+        <!--#region Uj Nev-->
         <TextBlock HorizontalAlignment="Center" Height="44" Margin="324,117,301,439" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" FontFamily="Segoe UI Light" FontSize="28" Text="Új felhasználó"/>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="230,184,511,397" TextWrapping="Wrap" VerticalAlignment="Center" Width="59" FontFamily="Segoe UI Light" FontSize="12" Text="Teljes név *"/>
+        <!--#endregion-->
+        
+        <!--#region TextBoxs-->
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="230,184,511,397" TextWrapping="Wrap" VerticalAlignment="Center" Width="59" FontFamily="Segoe UI Light" FontSize="12" Text="Teljes név *"></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="231,245,511,336" TextWrapping="Wrap" VerticalAlignment="Center" Width="58" FontFamily="Segoe UI Light" FontSize="12" Text="Login név *"/>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="248,307,511,274" TextWrapping="Wrap" VerticalAlignment="Center" Width="41" FontFamily="Segoe UI Light" FontSize="12" Text="Jelszó *"/>
+        <!--#endregion-->
+        
+        <!--#region Portfolio logo-->
         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="220,62,407,500" TextWrapping="Wrap" Text="P  rtfolio" VerticalAlignment="Center" Width="173" Foreground="Black" FontFamily="Yu Gothic UI" FontSize="26"/>
         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="227,62,400,500" TextWrapping="Wrap" Text=" o " VerticalAlignment="Center" Width="173" Foreground="#FFFD5807" FontFamily="Yu Gothic UI" FontSize="26"/>
+        <!--#endregion-->
+        
+        <!--#region Repos. Version-->
         <TextBlock HorizontalAlignment="Left" Margin="517,548,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" FontFamily="Calibri Light"><Run Text="@TradeLog "/><Run Text=" "/><Run Text="0.1"/></TextBlock>
+        <!--#endregion-->
+        
+        <!--#region Data input backgroud graphics-->
         <Rectangle Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
@@ -95,20 +110,29 @@
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
-        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Create" Content="Create" HorizontalAlignment="Center" Height="34" Margin="300,396,398,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Create_Click" />
-        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Back" Content="Back" HorizontalAlignment="Center" Height="34" Margin="415,396,283,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Back_Click" />
-        <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="211,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
-        <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="230,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
         <Rectangle Margin="290,325,280,250" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="231,245,511,336" TextWrapping="Wrap" VerticalAlignment="Center" Width="58" FontFamily="Segoe UI Light" FontSize="12" Text="Login név *"/>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="248,307,511,274" TextWrapping="Wrap" VerticalAlignment="Center" Width="41" FontFamily="Segoe UI Light" FontSize="12" Text="Jelszó *"/>
+        <!--#endregion--> 
+        
+        <!--#region Buttons-->
+        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Create" Content="Create" HorizontalAlignment="Center" Height="34" Margin="300,396,398,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Create_Click" />
+        <Button FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Back" Content="Back" HorizontalAlignment="Center" Height="34" Margin="415,396,283,170" VerticalAlignment="Center" Width="102" Style="{DynamicResource RoundedButton}" Click="Back_Click" />
+        <!--#endregion-->
+        
+        <!--#region ServerStatus icons-->
+        <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="211,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="230,551,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <!--#endregion-->
+        
+        <!--#region Input Field-->
         <TextBox x:Name="fullname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
         <TextBox x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,275,0,305" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="292,329,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" />
+        <!--#endregion-->
+        
     </Grid>
 
 

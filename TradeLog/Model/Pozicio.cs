@@ -23,7 +23,7 @@ namespace TradeLog.Model
         string _valasztottIdosik;
         DateTime _jegyzettIdo;
 
-        internal static string[] idosik = new string[8] { "1M", "5M", "15M", "30M", "1H", "4H", "1D", "1W" };
+        internal static readonly string[] idosik = new string[8] { "1M", "5M", "15M", "30M", "1H", "4H", "1D", "1W" };
 
         public string Ticket
         {
@@ -53,7 +53,7 @@ namespace TradeLog.Model
                 {
                     throw new ArgumentException("Devizapár megadása szükséges!");
                 }
-             
+
             }
         }
         public double Mennyiseg
@@ -61,16 +61,16 @@ namespace TradeLog.Model
             get => _mennyiseg;
             set
             {
-              
+
                 if (value >= 0)
                 {
                     _mennyiseg = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Lot mennyiség megadása szükséges!");
+                    throw new ArgumentException("Lot mező kitöltése kötelező és értéke nem lehet negatív!");
                 }
-              
+
             }
         }
         public double PriceNyit
@@ -84,7 +84,7 @@ namespace TradeLog.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Kérem adja meg a Nyitási price értéket !");
+                    throw new ArgumentException("Price nyitási érték megadása kötelező és nem lehet negatív!");
                 }
             }
         }
@@ -93,15 +93,15 @@ namespace TradeLog.Model
             get => _stop;
             set
             {
-                if (value >=0)
+                if (value >= 0)
                 {
                     _stop = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Kérem adja meg a Stop Loss értéket !");
+                    throw new ArgumentException("Stop érték megadása kötelező és nem lehet negatív!");
                 }
-           
+
             }
         }
         public double Cel
@@ -115,7 +115,7 @@ namespace TradeLog.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Kérem adja meg a Célárat !");
+                    throw new ArgumentException("Cél érték megadása kötelező és nem lehet negatív!");
                 }
             }
         }
@@ -139,10 +139,10 @@ namespace TradeLog.Model
             get => _vegosszeg;
             set
             {
-                
-                    _vegosszeg = value;
-              
-           
+
+                _vegosszeg = value;
+
+
             }
         }
         public string Keputvonal { get => _keputvonal; set => _keputvonal = value; }
@@ -286,51 +286,57 @@ namespace TradeLog.Model
 
         }
 
-        public Pozicio(XElement pozicionode)
+       
+
+
+        /*
+    public Pozicio(XElement pozicionode)
+    {
+        if (pozicionode.Name == "Kotes")
         {
-            if (pozicionode.Name == "Kotes")
-            {
-  
-                _ticket = pozicionode.Attribute("ticket").Value;
-                _devizapar = pozicionode.Attribute("devizapar").Value;
-                _mennyiseg = double.Parse(pozicionode.Attribute("mennyiseg").Value);
-                _priceNyit = double.Parse(pozicionode.Attribute("pricenyit").Value);
-                _stop = double.Parse(pozicionode.Attribute("stop").Value);
-                _cel = double.Parse(pozicionode.Attribute("cel").Value);
-                _zar = double.Parse(pozicionode.Attribute("zar").Value);
-                _vegosszeg = double.Parse(pozicionode.Attribute("vegosszeg").Value);
-                _keputvonal = pozicionode.Attribute("keputvonal").Value;
-                _megjegyzes = pozicionode.Attribute("megjegyzes").Value;
-                _valasztottIdosik = pozicionode.Attribute("valasztottidosik").Value;
-                _jegyzettIdo = DateTime.Parse(pozicionode.Attribute("jegyzettido").Value);
+
+            _ticket = pozicionode.Attribute("ticket").Value;
+            _devizapar = pozicionode.Attribute("devizapar").Value;
+            _mennyiseg = double.Parse(pozicionode.Attribute("mennyiseg").Value);
+            _priceNyit = double.Parse(pozicionode.Attribute("pricenyit").Value);
+            _stop = double.Parse(pozicionode.Attribute("stop").Value);
+            _cel = double.Parse(pozicionode.Attribute("cel").Value);
+            _zar = double.Parse(pozicionode.Attribute("zar").Value);
+            _vegosszeg = double.Parse(pozicionode.Attribute("vegosszeg").Value);
+            _keputvonal = pozicionode.Attribute("keputvonal").Value;
+            _megjegyzes = pozicionode.Attribute("megjegyzes").Value;
+            _valasztottIdosik = pozicionode.Attribute("valasztottidosik").Value;
+            _jegyzettIdo = DateTime.Parse(pozicionode.Attribute("jegyzettido").Value);
 
 
 
 
-            }
-            else
-            {
-                throw new ArgumentException("A node csak Kotes (Poziciok) tipusu lehet!");
-            }
         }
-
-        public XElement PozicioToXML()
+        else
         {
-            XElement pozicio = new XElement("Kotes",
-                 new XAttribute("ticket", _ticket),
-                 new XAttribute("devizapar", _devizapar),
-                 new XAttribute("mennyiseg", _mennyiseg),
-                 new XAttribute("pricenyit", _priceNyit),
-                 new XAttribute("stop", _stop),
-                 new XAttribute("cel", _cel),
-                 new XAttribute("zar", _zar),
-                 new XAttribute("vegosszeg", _vegosszeg),
-                 new XAttribute("keputvonal", _keputvonal),
-                 new XAttribute("megjegyzes", _megjegyzes),
-                 new XAttribute("valasztottidosik", _valasztottIdosik),
-                 new XAttribute("jegyzettido", _jegyzettIdo));
-            return pozicio;
-                
+            throw new ArgumentException("A node csak Kotes (Poziciok) tipusu lehet!");
         }
     }
+
+    public XElement PozicioToXML()
+    {
+        XElement pozicio = new XElement("Kotes",
+             new XAttribute("ticket", _ticket),
+             new XAttribute("devizapar", _devizapar),
+             new XAttribute("mennyiseg", _mennyiseg),
+             new XAttribute("pricenyit", _priceNyit),
+             new XAttribute("stop", _stop),
+             new XAttribute("cel", _cel),
+             new XAttribute("zar", _zar),
+             new XAttribute("vegosszeg", _vegosszeg),
+             new XAttribute("keputvonal", _keputvonal),
+             new XAttribute("megjegyzes", _megjegyzes),
+             new XAttribute("valasztottidosik", _valasztottIdosik),
+             new XAttribute("jegyzettido", _jegyzettIdo));
+        return pozicio;
+
+    }
+        */
+    }
+
 }

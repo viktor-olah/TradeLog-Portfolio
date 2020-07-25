@@ -7,7 +7,9 @@
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="TradeLog.View.LogView"
         mc:Ignorable="d"
         Title="Trade Napló" Height="750" Width="1300" MinWidth="1300" MinHeight="750" MaxWidth="1300" MaxHeight="750" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+  <!--#region Resources-->
     <Window.Resources>
+        
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -17,6 +19,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
@@ -494,9 +497,16 @@
         </Style>
 
     </Window.Resources>
+    <!--#endregion-->
+    
+    
     <Grid PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
-
+        
+        <!--#region main background-->
         <Rectangle RadiusX="20" RadiusY="20" Fill="#FFF4F4F5" Height="737" Stroke="Gray" StrokeThickness="1" Width="1300" Margin="0,5,0,8"/>
+        <!--#endregion-->
+        
+        <!--#region back , minimized , exit-->
         <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="1260,20,0,0" VerticalAlignment="Top" Width="25" Height="25" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource clsbtn}" Click="Exit_click">
             <Button.Background>
                 <ImageBrush ImageSource="/TradeLog;component/Resource/close.png" Stretch="Uniform"/>
@@ -512,15 +522,30 @@
                 <ImageBrush ImageSource="/TradeLog;component/Resource/back.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
+        <!--#endregion-->
+        
+        <!--#region design line-->
         <Rectangle Fill="#FFBFBFBF" HorizontalAlignment="Left" Height="1" Margin="40,702,0,0" RadiusY="0" RadiusX="0" Stroke="#FFC3C3C3" VerticalAlignment="Top" Width="1220"/>
+        <Rectangle Fill="#FFBFBFBF" HorizontalAlignment="Left" Height="1" Margin="40,474,0,0" RadiusY="0" RadiusX="0" Stroke="#FFC3C3C3" VerticalAlignment="Top" Width="1220"/>
+        <Rectangle Fill="#FFBFBFBF" HorizontalAlignment="Left" Height="1" Margin="40,258,0,0" RadiusY="0" RadiusX="0" Stroke="#FFC3C3C3" VerticalAlignment="Top" Width="1220"/>
+        <!--#endregion-->
+        
+        <!--#region server status-->
         <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="55,716,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
         <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="74,716,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <!--#endregion-->
+        
+        <!--#region Top-Left info field-->
         <Label Content="Felhasználó" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="26,26,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="teljesNev" BorderThickness="0" HorizontalAlignment="Left" Height="23" Margin="41,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Style="{DynamicResource tb_r}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Bahnschrift Light"/>
         <Label Content="Azonosító" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="26,78,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="azonosito" BorderThickness="0" HorizontalAlignment="Left" Height="23" Margin="41,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Style="{DynamicResource tb_r}" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Bahnschrift Light"/>
         <Label Content="Aktuális Tőke" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="26,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="aktualistoke" BorderThickness="0" HorizontalAlignment="Left" Height="23" Margin="41,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Style="{DynamicResource tb_r}" PreviewMouseDown="aktualistoke_PreviewMouseDown" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Right" FontFamily="Bahnschrift Light"/>
+        <Label x:Name="eurText" Content="EUR" HorizontalAlignment="Left" Margin="140,156,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <!--#endregion-->
+        
+        <!--#region Top-middle info field (read-only)-->
         <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="220" Margin="287,25,0,0" RadiusY="20" RadiusX="20" Stroke="Transparent" VerticalAlignment="Top" Width="273"/>
         <Label Content="Találati arány :" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="298,37,0,0" VerticalAlignment="Top" Height="29" Width="102"/>
         <Label Content="Kereskedések száma:" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="298,69,0,0" VerticalAlignment="Top" Height="29" Width="147"/>
@@ -534,9 +559,14 @@
         <TextBox x:Name="payoffrationTB" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="392,138,0,0" TextWrapping="Wrap" BorderThickness="0" VerticalAlignment="Top" Width="145" Background="White" Style="{DynamicResource tb_r}" FontFamily="Bahnschrift Light"/>
         <TextBox x:Name="celarmegvalosultTB" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="435,169,0,0" TextWrapping="Wrap" BorderThickness="0" VerticalAlignment="Top" Width="102" Background="White" Style="{DynamicResource tb_r}" FontFamily="Bahnschrift Light"/>
         <TextBox x:Name="pozicioepitesTB" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="395,201,0,0" TextWrapping="Wrap" BorderThickness="0" VerticalAlignment="Top" Width="142" Background="White" Style="{DynamicResource tb_r}" FontFamily="Bahnschrift Light"/>
+        <!--#endregion-->
+        
+        <!--#region ticket field-->
         <Label Content="Új Ticket jegyzés:" HorizontalAlignment="Left" FontSize="14" FontFamily="Bahnschrift Light" Margin="39,263,0,0" VerticalAlignment="Top"/>
-        <Rectangle Fill="#FFBFBFBF" HorizontalAlignment="Left" Height="1" Margin="40,258,0,0" RadiusY="0" RadiusX="0" Stroke="#FFC3C3C3" VerticalAlignment="Top" Width="1220"/>
         <Rectangle HorizontalAlignment="Left" Height="103" Margin="55,298,0,0" RadiusY="10" RadiusX="10" Stroke="Gray" StrokeThickness="0" VerticalAlignment="Top" Width="1193" Fill="#FFE6E6E6"/>
+        <!--#endregion-->
+        
+        <!--#region ticket attributes-->
         <Label Content="Ticket" HorizontalAlignment="Left" Margin="82,315,0,0" VerticalAlignment="Top" Width="59" FontFamily="Bahnschrift Light" />
         <Label Content="Devizapár" HorizontalAlignment="Left" Margin="163,315,0,0" VerticalAlignment="Top" Width="71" FontFamily="Bahnschrift Light" />
         <Label Content="Mennyiség" HorizontalAlignment="Left" Margin="256,315,0,0" VerticalAlignment="Top" Width="71" FontFamily="Bahnschrift Light" />
@@ -565,9 +595,12 @@
         <TextBox x:Name="megjegyzesTB" HorizontalAlignment="Left" Height="23" Margin="1075,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewMouseDown="TextBox_PreviewMouseDown"/>
         <Button BorderThickness="5" x:Name="jegyzesBtn" Content="Jegyzés" HorizontalAlignment="Left" Margin="1171,420,0,0"  VerticalAlignment="Top" Width="75" Background="White" BorderBrush="#FFE6E6E6" Foreground="Black" FontFamily="Bahnschrift Light" FontSize="14" Style="{DynamicResource FelvetBTN}" Height="35" Click="jegyzesBtn_click"/>
         <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="25" Margin="1205,397,0,0"  Stroke="Gray" StrokeThickness="0" VerticalAlignment="Top" Width="6"/>
+        <!--#endregion-->
+        
+        <!--#region data-->
         <ListBox x:Name="lb1" HorizontalAlignment="Left" Height="190" Margin="55,495,0,0" VerticalAlignment="Top" Width="1188" Style="{DynamicResource lb1_cr}" FontFamily="Bahnschrift Light" PreviewMouseRightButtonDown="lb1_PreviewMouseRightButtonDown"/>
-        <Rectangle Fill="#FFBFBFBF" HorizontalAlignment="Left" Height="1" Margin="40,474,0,0" RadiusY="0" RadiusX="0" Stroke="#FFC3C3C3" VerticalAlignment="Top" Width="1220"/>
-        <Label x:Name="eurText" Content="EUR" HorizontalAlignment="Left" Margin="140,156,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <!--#endregion-->
+        
 
     </Grid>
 </Window>

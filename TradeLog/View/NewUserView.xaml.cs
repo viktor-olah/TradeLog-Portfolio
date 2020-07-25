@@ -41,15 +41,24 @@ namespace TradeLog.View
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (Model.StaticData.Validalas(Model.StaticData.usersData,fullname.Text) == false)
+            try
             {
-                newUser = new User(fullname.Text, loginname.Text, password.Password);
-                DialogResult = true;
+             
+                if (Model.StaticData.Validalas(Model.StaticData.usersData, fullname.Text) == false)
+                {
+                    newUser = new User(fullname.Text, loginname.Text, password.Password);
+                    DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Az Ön nevével már van jegyzett regisztráció!", "Hiba");
+                }
             }
-            else
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Az Ön nevével már van jegyzett regisztráció!", "Hiba");
+                MessageBox.Show(ex.Message, "Hiba");
             }
+           
 
             
         }

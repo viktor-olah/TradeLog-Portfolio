@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeLog.Model;
@@ -33,39 +34,35 @@ namespace TradeLog.View
                 felhasznalo = value;
                 teljesNev.Text = value.VersenyzoNeve;
                 azonosito.Text = value.LoginName;
-                if (felhasznalo.Szemelyesnaplo != null)
-                {
-                    aktualistoke.Text = value.Szemelyesnaplo.AktualisToke.ToString();
-                    eurText.Visibility = Visibility.Visible;
-                }
-                
+              
                 foreach (Pozicio item in value.Kotesek)
                 {
                     lb1.Items.Add(item);
                 }
+
                 if (Model.StaticData.usersData.Count != 0)
                 {
                     ListBoxRefresh();
                     NaploAdatok();
                 }
+                aktualistoke.Text = value.AktualisToke.ToString();
+                AktualistokeStatusUpdate();
             }
         }
-       
+
+     
+
         public LogView()
         {
             InitializeComponent();
             idosikCB.ItemsSource = Pozicio.idosik;
-           
-           
             
-           
         }
 
         private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             
         }
-
 
         #region Window Shortcut
         private void Exit_click(object sender, RoutedEventArgs e)
@@ -88,8 +85,6 @@ namespace TradeLog.View
                 MainWindow main = new MainWindow();
                 this.Close();
                 main.ShowDialog();
-                
-             
             }
         }
         #endregion
@@ -98,28 +93,31 @@ namespace TradeLog.View
         {
             try
             {
-                lb1.Items.Clear();
+                if (User.AktualisToke != 0)
+                {
+                    lb1.Items.Clear();
 
-                User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, double.Parse(mennyisegTB.Text), double.Parse(nyitoTB.Text), double.Parse(stopTB.Text), double.Parse(celarTB.Text), double.Parse(zarTB.Text), double.Parse(osszegTB.Text), "new", megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
+                    User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, double.Parse(mennyisegTB.Text), double.Parse(nyitoTB.Text), double.Parse(stopTB.Text), double.Parse(celarTB.Text), double.Parse(zarTB.Text), double.Parse(osszegTB.Text), "new", megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
 
-                ListBoxRefresh();
-                NaploAdatok();
+                    ListBoxRefresh();
+                    NaploAdatok();
+                }
+                else
+                {
+                    aktualistoke.Background = Brushes.Coral;
+                }
             }
             catch (ArgumentException ex)
             {
+                ListBoxRefresh();
                 MessageBox.Show(ex.Message, "Hiba");
-
             }
-          
-      
-
         }
 
         private void lb1_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (lb1.SelectedIndex !=-1 && MessageBox.Show("Szeretné törölni a kiválasztott elemet","Törlés",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-               
                 User.Kotesek.Remove(lb1.SelectedItem as Pozicio);
                 ListBoxRefresh();
                 NaploAdatok();
@@ -129,6 +127,7 @@ namespace TradeLog.View
      
         private void aktualistoke_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            aktualistoke.Background = Brushes.White;
             eurText.Visibility = Visibility.Visible;
         }
 
@@ -137,32 +136,50 @@ namespace TradeLog.View
             if (aktualistoke.Text != "" && temp != aktualistoke.Text)
             {
                 temp = aktualistoke.Text;
-                User.Szemelyesnaplo = new Naplo(double.Parse(aktualistoke.Text));
-                
+                User.AktualisToke = double.Parse(aktualistoke.Text);
             }
         }
 
-        private void ListBoxRefresh()
-        {
-            lb1.Items.Clear();
-            
-            foreach (Pozicio item in Model.StaticData.Rendezes(User.Kotesek))
-            {
-                lb1.Items.Add(item);
-            }
-            
-           
-        }
+      
         private void NaploAdatok()
         {
+            aktualistoke.Clear();
             talalatiAranyTB.Text = Model.Pozicio.TalaltiArany(User.Kotesek).ToString("0" + " %");
             kereskedesekSzamaTB.Text = User.Kotesek.Count().ToString();
             osszNyeresegTB.Text = Model.Pozicio.OsszNyereseg(User.Kotesek).ToString("0.00"+ " EUR");
             payoffrationTB.Text = Model.Pozicio.PayOffRation(User.Kotesek).ToString("0.00");
             celarmegvalosultTB.Text = Model.Pozicio.CelarMegvalosulas(User.Kotesek).ToString();
             pozicioepitesTB.Text = Model.Pozicio.Pozicioepites(User.Kotesek).ToString();
+            if (User.AktualisToke != 0)
+            {
+                aktualistoke.Text = (User.AktualisToke + User.Kotesek.Last().Vegosszeg).ToString();
+            }
         }
 
+        private void ListBoxRefresh()
+        {
+            lb1.Items.Clear();
+
+            foreach (Pozicio item in Model.StaticData.Rendezes(User.Kotesek))
+            {
+                lb1.Items.Add(item);
+            }
+        }
+
+        private void AktualistokeStatusUpdate()
+        {
+            if (aktualistoke.Text == "0")
+            {
+                eurText.Visibility = Visibility.Hidden;
+                aktualistoke.Clear();
+
+            }
+            else
+            {
+                eurText.Visibility = Visibility.Visible;
+            }
+
+        }
     }
 }
 

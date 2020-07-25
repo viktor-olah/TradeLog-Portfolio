@@ -40,7 +40,7 @@ namespace TradeLog.Model
             return adatEgyezesKereses;
         }
 
-      internal static Object Kivalasztott(List<User> adatok, string beirtnev, string jelszo)
+        internal static Object Kivalasztott(List<User> adatok, string beirtnev, string jelszo)
         {
             foreach (User item in adatok)
             {
@@ -53,6 +53,7 @@ namespace TradeLog.Model
             }
             return kivalaszt;
         }
+
         static public List<Pozicio> Rendezes(List<Pozicio> kuldottLista)
         {
             List<Pozicio> rendezettLista = new List<Pozicio>();

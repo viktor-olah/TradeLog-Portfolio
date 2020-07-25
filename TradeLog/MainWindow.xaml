@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:TradeLog"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
+    
+    <!--#region Resources-->
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -64,40 +66,62 @@
             </Setter>
         </Style>
     </Window.Resources>
-
+<!--#endregion-->
 
     <Grid>
 
+        <!--#region Fo panel-->
         <Rectangle Margin="10" Stroke="White" RadiusX="10" RadiusY="10" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="540" Width="450">
         </Rectangle>
-        <!--
-        <Rectangle Margin="10" Stroke="#FFFD5807" RadiusX="10" RadiusY="10" StrokeThickness="0.8" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="550" Width="450">
-        </Rectangle>
-        -->
+     
         <Rectangle Margin="25" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="480" Width="400">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="1000"/>
             </Rectangle.BitmapEffect>
 
         </Rectangle>
+        <!--#endregion-->
+        
+        <!--#region Log Book for Trading-->
         <TextBlock HorizontalAlignment="Center" Height="44" Margin="280,131,270,425" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" FontFamily="Segoe UI Light" FontSize="28" Text="Log Book for Trading"/>
+        <!--#endregion-->
+        
+        <!--#region Portfolio-->
         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="220,62,407,500" TextWrapping="Wrap" Text="P  rtfolio" VerticalAlignment="Center" Width="173" Foreground="Black" FontFamily="Yu Gothic UI" FontSize="26"/>
         <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Height="38" Margin="227,62,400,500" TextWrapping="Wrap" Text=" o " VerticalAlignment="Center" Width="173" Foreground="#FFFD5807" FontFamily="Yu Gothic UI" FontSize="26"/>
+        <!--#endregion-->
+        
+        <!--#region Images -->
         <Image HorizontalAlignment="Left" Height="20" Margin="251,213,0,0" VerticalAlignment="Top" Width="20" Source="Resource/user.png"/>
         <Image HorizontalAlignment="Left" Height="20" Margin="251,263,0,0" VerticalAlignment="Top" Width="20" Source="Resource/lock.png"/>
+        <!--#endregion-->
+        
+        <!--#region Repos version-->
         <TextBlock HorizontalAlignment="Left" Margin="517,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" FontFamily="Calibri Light"><Run Text="@TradeLog "/><Run Text=" "/><Run Text="0.2"/></TextBlock>
+        <!--#endregion-->
+        
+        <!--#region Data input background graphics-->
         <Rectangle Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
+        
+        
         <Rectangle Margin="290,261,280,314" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
+        <!--#endregion-->
+        
+        <!--#region Buttons-->
         <Button TabIndex="3" FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Login" Content="Login" HorizontalAlignment="Center" Height="33" Margin="352.5,311.5,346.5,255.5" VerticalAlignment="Center" Width="101" Style="{DynamicResource RoundedButton}" Click="Login_Click" />
         <Button TabIndex="4" FontFamily="Yu Gothic UI Semibold" FontSize="16" x:Name="Kilepes" Content="Exit" HorizontalAlignment="Center" Height="33" Margin="352.5,349.5,346.5,217.5" VerticalAlignment="Center" Width="101" Style="{DynamicResource RoundedButton}" Click="Kilepes_Click" />
+        <!--#endregion-->
+        
+        
+        <!--#region New User Label-->
         <Label Content="for new Users click here" HorizontalAlignment="Left" Height="39" Margin="227,491,0,0" VerticalAlignment="Top" Width="215" FontFamily="Segoe UI Light" FontSize="16" PreviewMouseDown="Label_PreviewMouseDown">
             <Label.Style>
                 <Style TargetType="Label">
@@ -110,10 +134,18 @@
                 </Style>
             </Label.Style>
         </Label>
+        <!--#endregion-->
+        
+        <!--#region Server Status-->
         <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="211,550,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
         <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="230,550,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <!--#endregion-->
+        
+        <!--#region Data input-->
         <PasswordBox TabIndex="2" x:Name="password" HorizontalAlignment="Left" Margin="292,264,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" />
         <TextBox TabIndex="1" x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
+        <!--#endregion-->
+        
     </Grid>
 
 

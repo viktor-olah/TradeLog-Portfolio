@@ -28,25 +28,23 @@ namespace TradeLog
         public MainWindow()
         {
             InitializeComponent();
-            //f1.Stroke = Brushes.Aqua;
-
         }
 
      
 
         private void Kilepes_Click(object sender, RoutedEventArgs e)
         {
+            /*
             XDocument users = new XDocument(new XElement("User"));
             foreach (User item in Model.StaticData.usersData)
             {
                 users.Root.Add(item.UserToXML());
             }
             users.Save("Users.xml");
-
+            */
 
             if (MessageBox.Show("Biztosan be akarja zárni az alkalmazást?","Bezárás",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-
                 this.Close();
             }
             
@@ -85,12 +83,14 @@ namespace TradeLog
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
             if (File.Exists("Users.xml"))
             {
                 XDocument users = XDocument.Load("Users.xml");
                 Model.StaticData.usersData = (from user in users.Root.Elements("User")
                                             select new User(user)).ToList();
             }
+            */
         }
     }
 }
