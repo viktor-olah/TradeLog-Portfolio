@@ -1,5 +1,7 @@
 ﻿using Microsoft.SqlServer.Server;
+using Microsoft.Win32;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +27,8 @@ namespace TradeLog.View
 
         User felhasznalo;
         string temp;
-
+        string tempKeputvonal;
+        internal Pozicio Pozicio { get; private set; }
         internal User User
         {
             get => felhasznalo;
@@ -34,7 +37,7 @@ namespace TradeLog.View
                 felhasznalo = value;
                 teljesNev.Text = value.VersenyzoNeve;
                 azonosito.Text = value.LoginName;
-              
+
                 foreach (Pozicio item in value.Kotesek)
                 {
                     lb1.Items.Add(item);
@@ -50,18 +53,23 @@ namespace TradeLog.View
             }
         }
 
-     
+
 
         public LogView()
         {
             InitializeComponent();
             idosikCB.ItemsSource = Pozicio.idosik;
-            
+
         }
 
         private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            View.Description desc = new View.Description();
+            desc.megjegyzes.Text = megjegyzesTB.Text;
+            if (desc.ShowDialog() == (DialogResult == null))
+            {
+                megjegyzesTB.Text = desc.megjegyzes.Text;
+            }
         }
 
         #region Window Shortcut
@@ -97,8 +105,8 @@ namespace TradeLog.View
                 {
                     lb1.Items.Clear();
 
-                    User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, double.Parse(mennyisegTB.Text), double.Parse(nyitoTB.Text), double.Parse(stopTB.Text), double.Parse(celarTB.Text), double.Parse(zarTB.Text), double.Parse(osszegTB.Text), "new", megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
-
+                    User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, ValueValidation(mennyisegTB.Text), ValueValidation(nyitoTB.Text), ValueValidation(stopTB.Text), ValueValidation(celarTB.Text), ValueValidation(zarTB.Text), ValueValidation(osszegTB.Text), tempKeputvonal, megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
+                    //Pozicio.ImageSave(tempKeputvonal);
                     ListBoxRefresh();
                     NaploAdatok();
                 }
@@ -106,6 +114,7 @@ namespace TradeLog.View
                 {
                     aktualistoke.Background = Brushes.Coral;
                 }
+                Pozicio.ImageSave(tempKeputvonal);
             }
             catch (ArgumentException ex)
             {
@@ -116,7 +125,7 @@ namespace TradeLog.View
 
         private void lb1_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (lb1.SelectedIndex !=-1 && MessageBox.Show("Szeretné törölni a kiválasztott elemet","Törlés",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (lb1.SelectedIndex != -1 && MessageBox.Show("Szeretné törölni a kiválasztott elemet", "Törlés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 User.Kotesek.Remove(lb1.SelectedItem as Pozicio);
                 ListBoxRefresh();
@@ -124,7 +133,7 @@ namespace TradeLog.View
             }
         }
 
-     
+
         private void aktualistoke_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             aktualistoke.Background = Brushes.White;
@@ -133,23 +142,35 @@ namespace TradeLog.View
 
         private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (aktualistoke.Text != "" && temp != aktualistoke.Text)
+            try
             {
-                temp = aktualistoke.Text;
-                User.AktualisToke = double.Parse(aktualistoke.Text);
+                if (aktualistoke.Text != "" && temp != aktualistoke.Text)
+                {
+                    temp = aktualistoke.Text;
+                    User.AktualisToke = ValueValidation(aktualistoke.Text);
+                    aktualistoke.Background = Brushes.White;
+                }
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                aktualistoke.Text = "";
+                aktualistoke.Background = Brushes.Coral;
+            }
+          
         }
 
-      
+
         private void NaploAdatok()
         {
             aktualistoke.Clear();
-            talalatiAranyTB.Text = Model.Pozicio.TalaltiArany(User.Kotesek).ToString("0" + " %");
+            talalatiAranyTB.Text = Pozicio.TalaltiArany(User.Kotesek).ToString("0" + " %");
             kereskedesekSzamaTB.Text = User.Kotesek.Count().ToString();
-            osszNyeresegTB.Text = Model.Pozicio.OsszNyereseg(User.Kotesek).ToString("0.00"+ " EUR");
-            payoffrationTB.Text = Model.Pozicio.PayOffRation(User.Kotesek).ToString("0.00");
-            celarmegvalosultTB.Text = Model.Pozicio.CelarMegvalosulas(User.Kotesek).ToString();
-            pozicioepitesTB.Text = Model.Pozicio.Pozicioepites(User.Kotesek).ToString();
+            osszNyeresegTB.Text = Pozicio.OsszNyereseg(User.Kotesek).ToString("0.00" + " EUR");
+            payoffrationTB.Text = Pozicio.PayOffRation(User.Kotesek).ToString("0.00");
+            celarmegvalosultTB.Text = Pozicio.CelarMegvalosulas(User.Kotesek).ToString();
+            pozicioepitesTB.Text = Pozicio.Pozicioepites(User.Kotesek).ToString();
+
             if (User.AktualisToke != 0)
             {
                 aktualistoke.Text = (User.AktualisToke + User.Kotesek.Last().Vegosszeg).ToString();
@@ -180,6 +201,32 @@ namespace TradeLog.View
             }
 
         }
+
+        private void picture_click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "JPG (*.jpg)|*.jpg |All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+
+                tempKeputvonal = openFileDialog.FileName;
+        }
+
+        private double ValueValidation(string input)
+        {
+            double backValue=0.00;
+            if (!string.IsNullOrEmpty(input) && double.TryParse(input, out double output) && output >= 0)
+            {
+                backValue = output;
+            }
+            else
+            {
+                throw new ArgumentException("Hibás karakter adott meg a jegyzésben!");
+            }
+            return backValue;
+        }
     }
 }
+
+    
+
 

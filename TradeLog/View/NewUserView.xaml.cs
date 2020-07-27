@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeLog.Model;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace TradeLog.View
 {
@@ -43,7 +45,7 @@ namespace TradeLog.View
         {
             try
             {
-             
+                LoginFieldBGColorControl();
                 if (Model.StaticData.Validalas(Model.StaticData.usersData, fullname.Text) == false)
                 {
                     newUser = new User(fullname.Text, loginname.Text, password.Password);
@@ -66,6 +68,35 @@ namespace TradeLog.View
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
+        }
+
+        private void LoginFieldBGColorControl()
+        {
+            if (fullname.Text == "")
+            {
+                fullnameBG.Fill = Brushes.Coral;
+            }
+            else
+            {
+                fullnameBG.Fill = Brushes.White;
+            }
+            if (loginname.Text == "")
+            {
+                loginBG.Fill = Brushes.Coral;
+            }
+            else
+            {
+                loginBG.Fill = Brushes.White;
+            }
+            if (password.Password == "")
+            {
+                passBG.Fill = Brushes.Coral;
+            }
+            else
+            {
+                passBG.Fill = Brushes.White;
+            }
 
         }
     }

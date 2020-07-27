@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -62,7 +63,7 @@ namespace TradeLog.Model
             set
             {
 
-                if (value >= 0)
+                if (value > 0)
                 {
                     _mennyiseg = value;
                 }
@@ -286,8 +287,11 @@ namespace TradeLog.Model
 
         }
 
+        static internal void ImageSave(string utvonal)
+        {
+            // v2.0 dev
+        }
        
-
 
         /*
     public Pozicio(XElement pozicionode)

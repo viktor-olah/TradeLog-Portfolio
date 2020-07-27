@@ -101,14 +101,14 @@
         <!--#endregion-->
         
         <!--#region Data input background graphics-->
-        <Rectangle Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+        <Rectangle x:Name="loginbg" Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
         
         
-        <Rectangle Margin="290,261,280,314" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+        <Rectangle x:Name="passbg" Margin="290,261,280,314" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
@@ -142,8 +142,8 @@
         <!--#endregion-->
         
         <!--#region Data input-->
-        <PasswordBox TabIndex="2" x:Name="password" HorizontalAlignment="Left" Margin="292,264,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" />
-        <TextBox TabIndex="1" x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
+        <PasswordBox TabIndex="2" x:Name="password" HorizontalAlignment="Left" Margin="292,264,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" Background="Transparent" />
+        <TextBox TabIndex="1" x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="NoWrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0" Background="Transparent" />
         <!--#endregion-->
         
     </Grid>

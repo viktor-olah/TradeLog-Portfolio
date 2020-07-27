@@ -100,17 +100,17 @@
         <!--#endregion-->
         
         <!--#region Data input backgroud graphics-->
-        <Rectangle Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+        <Rectangle x:Name="fullnameBG" Margin="290,211,280,364" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
-        <Rectangle Margin="290,271,280,304" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+        <Rectangle x:Name="loginBG" Margin="290,271,280,304" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
         </Rectangle>
-        <Rectangle Margin="290,325,280,250" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
+        <Rectangle x:Name="passBG"  Margin="290,325,280,250" Stroke="White" RadiusX="5" RadiusY="5" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Height="25" Width="230">
             <Rectangle.BitmapEffect>
                 <DropShadowBitmapEffect Direction="0" Color="Gray" ShadowDepth="0" Softness="0.2"/>
             </Rectangle.BitmapEffect>
@@ -128,9 +128,9 @@
         <!--#endregion-->
         
         <!--#region Input Field-->
-        <TextBox x:Name="fullname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
-        <TextBox x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,275,0,305" TextWrapping="Wrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="292,329,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" />
+        <TextBox x:Name="fullname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="NoWrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0" Background="Transparent" />
+        <TextBox x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,275,0,305" TextWrapping="NoWrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0" Background="Transparent"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="292,329,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" Background="Transparent"/>
         <!--#endregion-->
         
     </Grid>
