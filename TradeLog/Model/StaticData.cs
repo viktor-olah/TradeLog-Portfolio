@@ -16,7 +16,7 @@ namespace TradeLog.Model
         static object kivalaszt;                                        //objektum a bejelentkező tárolásához Kiválasztáskor
         internal static bool ServerStatus = true;                       //Server status futtatáskor értéket kap ha van érvények connect.
         internal static bool frChange = true;                           //FirstRun Change megakadályozza a winload töltését, ha már egyszer megtette.
-        internal static string commitversion = "1.61";                  //version szam.
+        internal static string commitversion = "1.70";                  //version szam.
 
 
         internal static bool Validalas (List<User> adatok,string teljesnev)

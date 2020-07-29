@@ -7,7 +7,7 @@
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="TradeLog.View.LogView"
         xmlns:models ="clr-namespace:TradeLog.Model"
         mc:Ignorable="d"
-        Title="Trade Napló" Height="750" Width="1300" MinWidth="1300" MinHeight="750" MaxWidth="1300" MaxHeight="750" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        Title="Trade Napló" Height="750" Width="1300" MinWidth="1300" MinHeight="750" MaxWidth="1300" MaxHeight="750" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/TradeLog;component/Resource/tax.png">
   <!--#region Resources-->
     <Window.Resources>
         
@@ -579,21 +579,21 @@
         <Label Content="Profit / Veszteség / Építés (+/-)" HorizontalAlignment="Left" Margin="755,315,0,0" VerticalAlignment="Top" Width="180" Height="26" FontFamily="Bahnschrift Light" />
         <Label Content="Kép (Csatolás)" HorizontalAlignment="Left" Margin="942,315,0,0" VerticalAlignment="Top" Width="88" Height="26" FontFamily="Bahnschrift Light" />
         <Label Content="Megjegyzés / Mentális jegyzőkönyv" HorizontalAlignment="Left" Margin="1045,315,0,0" VerticalAlignment="Top" Width="198" Height="26" FontFamily="Bahnschrift Light" />
-        <TextBox x:Name="ticketTB" HorizontalAlignment="Left" Height="23" Margin="71,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TextAlignment="Center" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="devizaparTB" HorizontalAlignment="Left" Height="23" Margin="160,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" TextAlignment="Center" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="mennyisegTB" HorizontalAlignment="Left" Height="23" Margin="256,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="nyitoTB" HorizontalAlignment="Left" Height="23" Margin="409,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="stopTB" HorizontalAlignment="Left" Height="23" Margin="492,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="celarTB" HorizontalAlignment="Left" Height="23" Margin="578,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="70" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="zarTB" HorizontalAlignment="Left" Height="23" Margin="670,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="72" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="osszegTB" HorizontalAlignment="Left" Height="23" Margin="783,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="117" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="ticketTB" HorizontalAlignment="Left" Height="23" Margin="71,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="devizaparTB" HorizontalAlignment="Left" Height="23" Margin="160,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" TextAlignment="Center" Width="67"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="mennyisegTB" HorizontalAlignment="Left" Height="23" Margin="256,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="nyitoTB" HorizontalAlignment="Left" Height="23" Margin="409,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="stopTB" HorizontalAlignment="Left" Height="23" Margin="492,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="celarTB" HorizontalAlignment="Left" Height="23" Margin="578,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="70"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="zarTB" HorizontalAlignment="Left" Height="23" Margin="670,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="72"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="osszegTB" HorizontalAlignment="Left" Height="23" Margin="783,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="117"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource felvitelitb}"/>
         <ComboBox x:Name="idosikCB" HorizontalAlignment="Left" Margin="332,344,0,0" VerticalAlignment="Top" Width="68" Style="{DynamicResource CNRadius}"/>
         <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="961,341,0,0" VerticalAlignment="Top" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="picture_click">
             <Button.Background>
                 <ImageBrush ImageSource="/TradeLog;component/Resource/attach.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="megjegyzesTB" HorizontalAlignment="Left" Height="23" Margin="1075,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewMouseDown="TextBox_PreviewMouseDown"/>
+        <TextBox x:Name="megjegyzesTB" HorizontalAlignment="Left" Height="23" Margin="1075,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseDown="TextBox_PreviewMouseDown"/>
         <Button BorderThickness="5" x:Name="jegyzesBtn" Content="Jegyzés" HorizontalAlignment="Left" Margin="1171,420,0,0"  VerticalAlignment="Top" Width="75" Background="White" BorderBrush="#FFE6E6E6" Foreground="Black" FontFamily="Bahnschrift Light" FontSize="14" Style="{DynamicResource FelvetBTN}" Height="35" Click="jegyzesBtn_click"/>
         <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="25" Margin="1205,397,0,0"  Stroke="Gray" StrokeThickness="0" VerticalAlignment="Top" Width="6"/>
         <!--#endregion-->

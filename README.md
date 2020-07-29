@@ -17,4 +17,4 @@ A fő könnyvtárban megtalálható a "create_mysql_query.sql" amely előállít
 
 #v1.61 log
 	-
-
+#Package NUGET MYSQL.DATA V8.0.21.
