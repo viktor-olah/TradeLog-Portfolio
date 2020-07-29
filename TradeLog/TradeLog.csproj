@@ -104,9 +104,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ITradeLogComponent.cs" />
     <Compile Include="Model\Pozicio.cs" />
     <Compile Include="Model\StaticData.cs" />
+    <Compile Include="SQL\DBManagement.cs" />
+    <Compile Include="SQL\DBManagementExept.cs" />
+    <Compile Include="SQL\ExeptionLog.cs" />
     <Compile Include="View\Description.xaml.cs">
       <DependentUpon>Description.xaml</DependentUpon>
     </Compile>
@@ -191,7 +193,7 @@
     <Resource Include="Resource\attach.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SQL\" />
+    <Resource Include="Resource\tax.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

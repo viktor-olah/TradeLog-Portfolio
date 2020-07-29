@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TradeLog"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
+        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded" Icon="Resource/tax.png">
     
     <!--#region Resources-->
     <Window.Resources>
@@ -97,7 +97,7 @@
         <!--#endregion-->
         
         <!--#region Repos version-->
-        <TextBlock HorizontalAlignment="Left" Margin="517,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" FontFamily="Calibri Light"><Run Text="@TradeLog "/><Run Text=" "/><Run Text="0.2"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="517,547,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" FontFamily="Calibri Light"><Run Text="@TradeLog "/><Run Text=" "/><Run x:Name="version" Text =""/></TextBlock>
         <!--#endregion-->
         
         <!--#region Data input background graphics-->
@@ -139,11 +139,13 @@
         <!--#region Server Status-->
         <Ellipse  x:Name="sql" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="211,550,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
         <Ellipse   x:Name="xml" Fill="Transparent" HorizontalAlignment="Left" Height="10" Margin="230,550,0,0" Stroke="Black" StrokeThickness="0.1" VerticalAlignment="Top" Width="10"/>
+        <Label x:Name="log" Content="" HorizontalAlignment="Left" Margin="245,542,0,0" VerticalAlignment="Top" Background="Transparent" FontSize="12" Width="209"/>
         <!--#endregion-->
         
         <!--#region Data input-->
         <PasswordBox TabIndex="2" x:Name="password" HorizontalAlignment="Left" Margin="292,264,0,0" VerticalAlignment="Top" Width="225" Foreground="Black" BorderThickness="0" Height="20" Background="Transparent" />
         <TextBox TabIndex="1" x:Name="loginname" FontFamily="Verdana" HorizontalAlignment="Left" Height="20" Margin="292,215,0,365" TextWrapping="NoWrap" VerticalAlignment="Center" Width="225" Foreground="Black" BorderThickness="0" Background="Transparent" />
+        
         <!--#endregion-->
         
     </Grid>

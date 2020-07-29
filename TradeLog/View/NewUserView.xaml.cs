@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeLog.Model;
+using TradeLog.SQL;
 using Brushes = System.Windows.Media.Brushes;
 
 namespace TradeLog.View
@@ -39,6 +40,8 @@ namespace TradeLog.View
         public NewUserView()
         {
             InitializeComponent();
+            ServerStatus(Model.StaticData.ServerStatus);
+            version.Text = Model.StaticData.commitversion;
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -49,6 +52,11 @@ namespace TradeLog.View
                 if (Model.StaticData.Validalas(Model.StaticData.usersData, fullname.Text) == false)
                 {
                     newUser = new User(fullname.Text, loginname.Text, password.Password);
+                    if (Model.StaticData.ServerStatus == true)
+                    {
+                        DBManagement.UjFelhasznaloREG(newUser);
+                    }
+                    MessageBox.Show("Új felhasználó regisztrálva ! Most már bejelentkezhet ","Login");
                     DialogResult = true;
                 }
                 else
@@ -98,6 +106,20 @@ namespace TradeLog.View
                 passBG.Fill = Brushes.White;
             }
 
+        }
+
+        private void ServerStatus(bool status)
+        {
+            if (status == true)
+            {
+                sql.Fill = Brushes.Green;
+                xml.Fill = Brushes.Gray;
+            }
+            else
+            {
+                sql.Fill = Brushes.Red;
+                xml.Fill = Brushes.Green;
+            }
         }
     }
 }

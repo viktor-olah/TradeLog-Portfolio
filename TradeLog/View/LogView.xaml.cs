@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeLog.Model;
+using TradeLog.SQL;
 
 namespace TradeLog.View
 {
@@ -26,8 +27,10 @@ namespace TradeLog.View
     {
 
         User felhasznalo;
+
         string temp;
-        string tempKeputvonal;
+        string tempKeputvonal = "-";
+
         internal Pozicio Pozicio { get; private set; }
         internal User User
         {
@@ -49,6 +52,7 @@ namespace TradeLog.View
                     NaploAdatok();
                 }
                 aktualistoke.Text = value.AktualisToke.ToString();
+              
                 AktualistokeStatusUpdate();
             }
         }
@@ -58,9 +62,10 @@ namespace TradeLog.View
         public LogView()
         {
             InitializeComponent();
+            ServerStatus(Model.StaticData.ServerStatus);
             idosikCB.ItemsSource = Pozicio.idosik;
-
         }
+
 
         private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -70,13 +75,21 @@ namespace TradeLog.View
             {
                 megjegyzesTB.Text = desc.megjegyzes.Text;
             }
-        }
+        }       // Megjegyzés box kitöltése nagyobb nézetben.
 
         #region Window Shortcut
         private void Exit_click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Biztosan be akarja zárni az alkalmazást?", "Bezárás", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
+                if (Model.StaticData.ServerStatus == true)
+                {
+                    DBManagement.KapcsolatBontas();
+                }
+                else
+                {
+                    Model.StaticData.XMLSave();
+                }
                 this.Close();
             }
         }
@@ -105,7 +118,12 @@ namespace TradeLog.View
                 {
                     lb1.Items.Clear();
 
-                    User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, ValueValidation(mennyisegTB.Text), ValueValidation(nyitoTB.Text), ValueValidation(stopTB.Text), ValueValidation(celarTB.Text), ValueValidation(zarTB.Text), ValueValidation(osszegTB.Text), tempKeputvonal, megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
+                    User.Kotesek.Add(new Pozicio(ticketTB.Text, devizaparTB.Text, ValueValidation(mennyisegTB.Text.Replace(".",",")), ValueValidation(nyitoTB.Text.Replace(".", ",")), ValueValidation(stopTB.Text.Replace(".", ",")), ValueValidation(celarTB.Text.Replace(".", ",")), ValueValidation(zarTB.Text.Replace(".", ",")), ValueValidation(osszegTB.Text.Replace(".", ",")),tempKeputvonal,megjegyzesTB.Text, idosikCB.SelectedItem.ToString()));
+                    if (Model.StaticData.ServerStatus == true)
+                    {
+                        DBManagement.UjJegyzes(User, User.Kotesek.Last());
+                    }
+                   
                     //Pozicio.ImageSave(tempKeputvonal);
                     ListBoxRefresh();
                     NaploAdatok();
@@ -121,12 +139,13 @@ namespace TradeLog.View
                 ListBoxRefresh();
                 MessageBox.Show(ex.Message, "Hiba");
             }
-        }
+        }                      // Bejegyzés készítése
 
-        private void lb1_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void lb1_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)        // Jobb klikkel bejegyzés törlése
         {
             if (lb1.SelectedIndex != -1 && MessageBox.Show("Szeretné törölni a kiválasztott elemet", "Törlés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
+                DBManagement.JegyzesTorlese(lb1.SelectedItem as Pozicio);
                 User.Kotesek.Remove(lb1.SelectedItem as Pozicio);
                 ListBoxRefresh();
                 NaploAdatok();
@@ -134,7 +153,7 @@ namespace TradeLog.View
         }
 
 
-        private void aktualistoke_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void aktualistoke_PreviewMouseDown(object sender, MouseButtonEventArgs e)       
         {
             aktualistoke.Background = Brushes.White;
             eurText.Visibility = Visibility.Visible;
@@ -148,6 +167,10 @@ namespace TradeLog.View
                 {
                     temp = aktualistoke.Text;
                     User.AktualisToke = ValueValidation(aktualistoke.Text);
+                    if (Model.StaticData.ServerStatus == true)
+                    {
+                        DBManagement.UjaktualisTokeJegyzese(User);
+                    }
                     aktualistoke.Background = Brushes.White;
                 }
             }
@@ -158,12 +181,12 @@ namespace TradeLog.View
                 aktualistoke.Background = Brushes.Coral;
             }
           
-        }
+        }       // Aktuális tőke frissítés textboxból kilépve.
 
 
         private void NaploAdatok()
         {
-            aktualistoke.Clear();
+            //aktualistoke.Clear();
             talalatiAranyTB.Text = Pozicio.TalaltiArany(User.Kotesek).ToString("0" + " %");
             kereskedesekSzamaTB.Text = User.Kotesek.Count().ToString();
             osszNyeresegTB.Text = Pozicio.OsszNyereseg(User.Kotesek).ToString("0.00" + " EUR");
@@ -171,11 +194,11 @@ namespace TradeLog.View
             celarmegvalosultTB.Text = Pozicio.CelarMegvalosulas(User.Kotesek).ToString();
             pozicioepitesTB.Text = Pozicio.Pozicioepites(User.Kotesek).ToString();
 
-            if (User.AktualisToke != 0)
+            if (User.AktualisToke != 0 && User.Kotesek.Count !=0)
             {
                 aktualistoke.Text = (User.AktualisToke + User.Kotesek.Last().Vegosszeg).ToString();
             }
-        }
+        }               // Napló adatok frissítése
 
         private void ListBoxRefresh()
         {
@@ -185,7 +208,7 @@ namespace TradeLog.View
             {
                 lb1.Items.Add(item);
             }
-        }
+        }           // Listbox adatok frissítése memóriából.
 
         private void AktualistokeStatusUpdate()
         {
@@ -209,12 +232,12 @@ namespace TradeLog.View
             if (openFileDialog.ShowDialog() == true)
 
                 tempKeputvonal = openFileDialog.FileName;
-        }
+        }           // Kép belinkelése (késöbbi fejlesztéshez)
 
         private double ValueValidation(string input)
         {
             double backValue=0.00;
-            if (!string.IsNullOrEmpty(input) && double.TryParse(input, out double output) && output >= 0)
+            if (!string.IsNullOrEmpty(input) && double.TryParse(input, out double output))
             {
                 backValue = output;
             }
@@ -223,7 +246,22 @@ namespace TradeLog.View
                 throw new ArgumentException("Hibás karakter adott meg a jegyzésben!");
             }
             return backValue;
-        }
+        }                           // Bevitt adat ellenörző exeption-hez
+
+        private void ServerStatus(bool status)
+        {
+            if (status == true)
+            {
+                sql.Fill = Brushes.Green;
+                xml.Fill = Brushes.Gray;
+            }
+            else
+            {
+                sql.Fill = Brushes.Red;
+                xml.Fill = Brushes.Green;
+            }
+        }                                  //Szerver Státusz fények
+
     }
 }
 

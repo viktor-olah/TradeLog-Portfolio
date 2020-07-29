@@ -10,7 +10,7 @@ namespace TradeLog.Model
 {
     class User
     {
-        int _id;
+       
         string _versenyzoNeve;
         string _loginName;
         string _loginPass;
@@ -65,20 +65,20 @@ namespace TradeLog.Model
             }
         }
    
-        public int Id { get => _id; set => _id = value; }
+  
         internal List<Pozicio> Kotesek { get => kotesek; set => kotesek = value; }
         public double AktualisToke { get => _aktualisToke; set => _aktualisToke = value; }
 
-        public User(string versenyzoNeve, string loginName, string loginPass, int id, double aktualisToke)
+        //Már kereskedik / SQL
+        public User(string versenyzoNeve, string loginName, string loginPass, double aktualisToke)
         {
             VersenyzoNeve = versenyzoNeve;
             LoginName = loginName;
             LoginPass = loginPass;
-            Id = id;
             AktualisToke = aktualisToke;
             kotesek = new List<Pozicio>();
         }
-
+        // Csak regisztrál.
         public User(string versenyzoNeve, string loginName, string loginPass)
         {
             VersenyzoNeve = versenyzoNeve;
@@ -94,7 +94,42 @@ namespace TradeLog.Model
             return $"{VersenyzoNeve} - {LoginPass}";
         }
 
-      
-      
+
+        // XML - Load
+        public User(XElement usernode)
+        {
+            if (usernode.Name == "User")
+            {
+                _versenyzoNeve = usernode.Attribute("versenyzoNeve").Value;
+                _loginName = usernode.Attribute("loginName").Value;
+                _loginPass = usernode.Attribute("loginPass").Value;
+                _aktualisToke = double.Parse(usernode.Attribute("aktualistoke").Value);
+                kotesek = (from kotesek in usernode.Element("Kotesek_lista").Elements("Kotesek").Elements("Kotes") select new Pozicio(kotesek)).ToList();
+            }
+            else
+            {
+                throw new ArgumentException("A node csak User tipusu lehet!");
+            }
+        }
+
+        // XML - Save
+        public XElement UserToXML()
+        {
+            XElement user = new XElement("User",
+                new XAttribute("versenyzoNeve", _versenyzoNeve),
+                new XAttribute("loginName", _loginName),
+                new XAttribute("loginPass", _loginPass),
+                new XAttribute("aktualistoke", _aktualisToke),
+                
+                new XElement("Kotesek_lista", new XElement("Kotesek")));
+            foreach (Pozicio item in kotesek)
+            {
+                user.Element("Kotesek_lista").Element("Kotesek").Add(item.PozicioToXML());
+            }
+         
+            return user;
+        }
+
+
     }
 }

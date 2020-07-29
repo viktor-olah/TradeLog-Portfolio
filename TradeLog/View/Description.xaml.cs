@@ -26,10 +26,7 @@ namespace TradeLog.View
 
         private void mentes_click(object sender, RoutedEventArgs e)
         {
-            if (megjegyzes.Text != "")
-            {
-                DialogResult = true;
-            }
+            DialogResult = true;
         }
 
         private void Megse_Click(object sender, RoutedEventArgs e)

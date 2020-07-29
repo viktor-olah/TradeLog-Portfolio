@@ -9,8 +9,7 @@ namespace TradeLog.Model
 {
     internal class Pozicio
     {
-
-
+        #region Pozicio elemek
         string _ticket;
         string _devizapar;
         double _mennyiseg;
@@ -23,6 +22,7 @@ namespace TradeLog.Model
         string _megjegyzes;
         string _valasztottIdosik;
         DateTime _jegyzettIdo;
+        #endregion
 
         internal static readonly string[] idosik = new string[8] { "1M", "5M", "15M", "30M", "1H", "4H", "1D", "1W" };
 
@@ -165,7 +165,9 @@ namespace TradeLog.Model
         }
         public DateTime JegyzettIdo { get => _jegyzettIdo; set => _jegyzettIdo = value; }
 
-        public Pozicio(string ticket, string devizapar, double mennyiseg, double priceNyit, double stop, double cel, double zar, double vegosszeg, string keputvonal, string megjegyzes, string valasztottIdosik)
+
+        // Normal adatfelvétel
+        public Pozicio(string ticket, string devizapar, double mennyiseg, double priceNyit, double stop, double cel, double zar, double vegosszeg,  string keputvonal, string megjegyzes, string valasztottIdosik)
         {
             Ticket = ticket;
             Devizapar = devizapar;
@@ -180,6 +182,14 @@ namespace TradeLog.Model
             ValasztottIdosik = valasztottIdosik;
             JegyzettIdo = DateTime.Now;
         }
+
+
+        // Sql kiolvasáshoz.
+        public Pozicio(string ticket, string devizapar, double mennyiseg, double priceNyit, double stop, double cel, double zar, double vegosszeg, string keputvonal, string megjegyzes, string valasztottIdosik, DateTime jegyzettIdo) : this(ticket, devizapar, mennyiseg, priceNyit, stop, cel, zar, vegosszeg, keputvonal, megjegyzes, valasztottIdosik)
+        {
+            JegyzettIdo = jegyzettIdo;
+        }
+
 
         public override string ToString()
         {
@@ -293,7 +303,7 @@ namespace TradeLog.Model
         }
        
 
-        /*
+        //XML - Load
     public Pozicio(XElement pozicionode)
     {
         if (pozicionode.Name == "Kotes")
@@ -312,9 +322,6 @@ namespace TradeLog.Model
             _valasztottIdosik = pozicionode.Attribute("valasztottidosik").Value;
             _jegyzettIdo = DateTime.Parse(pozicionode.Attribute("jegyzettido").Value);
 
-
-
-
         }
         else
         {
@@ -322,6 +329,7 @@ namespace TradeLog.Model
         }
     }
 
+        // XML - Save
     public XElement PozicioToXML()
     {
         XElement pozicio = new XElement("Kotes",
@@ -340,7 +348,7 @@ namespace TradeLog.Model
         return pozicio;
 
     }
-        */
+        
     }
 
 }

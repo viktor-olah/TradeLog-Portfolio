@@ -579,14 +579,14 @@
         <Label Content="Profit / Veszteség / Építés (+/-)" HorizontalAlignment="Left" Margin="755,315,0,0" VerticalAlignment="Top" Width="180" Height="26" FontFamily="Bahnschrift Light" />
         <Label Content="Kép (Csatolás)" HorizontalAlignment="Left" Margin="942,315,0,0" VerticalAlignment="Top" Width="88" Height="26" FontFamily="Bahnschrift Light" />
         <Label Content="Megjegyzés / Mentális jegyzőkönyv" HorizontalAlignment="Left" Margin="1045,315,0,0" VerticalAlignment="Top" Width="198" Height="26" FontFamily="Bahnschrift Light" />
-        <TextBox x:Name="ticketTB" HorizontalAlignment="Left" Height="23" Margin="71,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="devizaparTB" HorizontalAlignment="Left" Height="23" Margin="160,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="mennyisegTB" HorizontalAlignment="Left" Height="23" Margin="256,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="nyitoTB" HorizontalAlignment="Left" Height="23" Margin="409,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="stopTB" HorizontalAlignment="Left" Height="23" Margin="492,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="celarTB" HorizontalAlignment="Left" Height="23" Margin="578,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="zarTB" HorizontalAlignment="Left" Height="23" Margin="670,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Style="{DynamicResource felvitelitb}"/>
-        <TextBox x:Name="osszegTB" HorizontalAlignment="Left" Height="23" Margin="783,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="ticketTB" HorizontalAlignment="Left" Height="23" Margin="71,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TextAlignment="Center" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="devizaparTB" HorizontalAlignment="Left" Height="23" Margin="160,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" TextAlignment="Center" Width="67" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="mennyisegTB" HorizontalAlignment="Left" Height="23" Margin="256,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="nyitoTB" HorizontalAlignment="Left" Height="23" Margin="409,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="stopTB" HorizontalAlignment="Left" Height="23" Margin="492,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="celarTB" HorizontalAlignment="Left" Height="23" Margin="578,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="70" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="zarTB" HorizontalAlignment="Left" Height="23" Margin="670,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="72" Style="{DynamicResource felvitelitb}"/>
+        <TextBox x:Name="osszegTB" HorizontalAlignment="Left" Height="23" Margin="783,344,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="117" Style="{DynamicResource felvitelitb}"/>
         <ComboBox x:Name="idosikCB" HorizontalAlignment="Left" Margin="332,344,0,0" VerticalAlignment="Top" Width="68" Style="{DynamicResource CNRadius}"/>
         <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="961,341,0,0" VerticalAlignment="Top" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="picture_click">
             <Button.Background>
