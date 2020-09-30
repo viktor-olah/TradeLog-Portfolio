@@ -1,0 +1,4 @@
+[2020. 09. 30. 15:05:05][Hiba] - A csatlakozás sikertelen volt a mysql adatbázishoz!
+
+[2020. 09. 30. 15:05:54][Hiba] - A csatlakozás sikertelen volt a mysql adatbázishoz!
+
